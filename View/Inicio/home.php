@@ -7,28 +7,28 @@
 
 <body>
 
-  <?php MostrarSidebar(); ?>
+    <?php MostrarSidebar(); ?>
 
-  <div class="main-wrapper">
+    <div class="main-wrapper">
 
-    <?php MostrarHeader(); ?>
+        <?php MostrarHeader(); ?>
 
-    <div class="page-header">
-      <div>
-        <h1 class="page-title">Dashboard</h1>
-      </div>
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Dashboard</h1>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+
+        </div>
+
+        <?php MostrarFooter(); ?>
+
     </div>
 
-    <div class="row g-4">
-
-
-    </div>
-
-    <?php MostrarFooter(); ?>
-
-  </div>
-
-<?php IncludeJS(); ?>
+    <?php IncludeJS(); ?>
 
 </body>
 
