@@ -1924,7 +1924,7 @@ span.flatpickr-weekday {
 .login-options {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
   margin-bottom: 1.75rem;
   font-size: 0.825rem;
 }
