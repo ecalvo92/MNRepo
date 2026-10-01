@@ -1,4 +1,7 @@
-<?php include_once '../layoutExterno.php'; ?>
+<?php 
+include_once '../layoutExterno.php';
+include_once '../../Controller/InicioController.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +21,15 @@
                 <span>Proyecto MN</span>
             </a>
 
-            <form action="index.html" method="GET" id="loginForm" class="needs-validation" novalidate>
+            <form action="" method="POST" id="loginForm" class="needs-validation" novalidate>
+
+                <?php if(isset($_POST["mensaje"])) { ?>
+
+                    <div class="alert alert-secondary d-flex justify-content-center" role="alert">
+                        <?php echo $_POST["mensaje"]; ?>
+                    </div>
+
+                <?php } ?>
 
                 <div class="login-form-group">
                     <label for="txtIdentificacion" class="login-form-label">Identificación</label>
@@ -41,7 +52,7 @@
                     <label for="txtCorreoElectronico" class="login-form-label">Correo Electrónico</label>
                     <div class="login-input-group">
                         <i class="bi bi-envelope input-icon"></i>
-                        <input type="text" id="txtCorreoElectronico" class="login-input">
+                        <input type="text" id="txtCorreoElectronico" name="txtCorreoElectronico" class="login-input">
                     </div>
                 </div>
 
@@ -49,7 +60,7 @@
                     <label for="txtContrasenna" class="login-form-label">Contraseña</label>
                     <div class="login-input-group">
                         <i class="bi bi-shield-lock input-icon"></i>
-                        <input type="password" id="txtContrasenna" class="login-input login-input-password">
+                        <input type="password" id="txtContrasenna" name="txtContrasenna" class="login-input login-input-password">
                         <button type="button" class="password-toggle-btn" id="toggle-password"
                             aria-label="Show password">
                             <i class="bi bi-eye"></i>
@@ -57,7 +68,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn-login" id="btn-submit">
+                <button type="submit" id="btnRegistro" name="btnRegistro" class="btn-login" id="btn-submit">
                     <span>Procesar</span>
                 </button>
 
