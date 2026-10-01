@@ -1,6 +1,6 @@
 <?php 
-include_once '../layoutExterno.php';
-include_once '../../Controller/InicioController.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/View/layoutExterno.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/InicioController.php';
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ include_once '../../Controller/InicioController.php';
                 <span>Proyecto MN</span>
             </a>
 
-            <form action="" method="POST" id="loginForm" class="needs-validation" novalidate>
+            <form action="" method="POST" id="registerForm" class="needs-validation" novalidate>
 
                 <?php if(isset($_POST["mensaje"])) { ?>
 
@@ -68,7 +68,7 @@ include_once '../../Controller/InicioController.php';
                     </div>
                 </div>
 
-                <button type="submit" id="btnRegistro" name="btnRegistro" class="btn-login" id="btn-submit">
+                <button type="submit" id="btnRegistro" name="btnRegistro" class="btn-login">
                     <span>Procesar</span>
                 </button>
 
@@ -84,6 +84,7 @@ include_once '../../Controller/InicioController.php';
     </div>
 
     <?php IncludeJS(); ?>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
     <script src="../assets/js/register.js"></script>
 
 </body>
