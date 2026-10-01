@@ -29,6 +29,22 @@
                 </div>
 
                 <div class="login-form-group">
+                    <label for="txtNombre" class="login-form-label">Nombre Completo</label>
+                    <div class="login-input-group">
+                        <i class="bi bi-person-badge input-icon"></i>
+                        <input type="text" id="txtNombre" class="login-input">
+                    </div>
+                </div>
+
+                <div class="login-form-group">
+                    <label for="txtCorreoElectronico" class="login-form-label">Correo Electrónico</label>
+                    <div class="login-input-group">
+                        <i class="bi bi-envelope input-icon"></i>
+                        <input type="text" id="txtCorreoElectronico" class="login-input">
+                    </div>
+                </div>
+
+                <div class="login-form-group">
                     <label for="txtContrasenna" class="login-form-label">Contraseña</label>
                     <div class="login-input-group">
                         <i class="bi bi-shield-lock input-icon"></i>
@@ -40,10 +56,6 @@
                     </div>
                 </div>
 
-                <div class="login-options">
-                    <a href="forgotPassword.php" class="forgot-password-link">Olvidó su contraseña?</a>
-                </div>
-
                 <button type="submit" class="btn-login" id="btn-submit">
                     <span>Procesar</span>
                 </button>
@@ -53,7 +65,7 @@
             <div class="login-divider"></div>
 
             <p class="login-footer-text">
-                No tiene una cuenta? <a href="register.php" id="link-register">Regístrese ahora</a>
+                Ya tiene una cuenta? <a href="login.php" id="link-register">Inicie sesión ahora</a>
             </p>
 
         </div>
