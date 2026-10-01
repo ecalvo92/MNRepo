@@ -24,7 +24,8 @@
                     <label for="txtIdentificacion" class="login-form-label">Identificación</label>
                     <div class="login-input-group">
                         <i class="bi bi-person input-icon"></i>
-                        <input type="text" id="txtIdentificacion" class="login-input">
+                        <input type="text" id="txtIdentificacion" name="txtIdentificacion" class="login-input" 
+                        onkeyup="ConsultarNombre()">
                     </div>
                 </div>
 
@@ -32,7 +33,7 @@
                     <label for="txtNombre" class="login-form-label">Nombre Completo</label>
                     <div class="login-input-group">
                         <i class="bi bi-person-badge input-icon"></i>
-                        <input type="text" id="txtNombre" class="login-input">
+                        <input type="text" id="txtNombre" name="txtNombre" class="login-input">
                     </div>
                 </div>
 
@@ -72,6 +73,7 @@
     </div>
 
     <?php IncludeJS(); ?>
+    <script src="../assets/js/register.js"></script>
 
 </body>
 
