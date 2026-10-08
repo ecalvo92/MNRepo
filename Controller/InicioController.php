@@ -7,12 +7,14 @@ if(isset($_POST['btnRegistro'])) {
     $correoElectronico = $_POST['txtCorreoElectronico'];
     $contrasenna = $_POST['txtContrasenna'];
 
-    $response = RegistroModel($identificacion,$nombre,$correoElectronico,$contrasenna);
+    RegistroModel($identificacion,$nombre,$correoElectronico,$contrasenna);
 }
 
 if(isset($_POST['btnInicioSesion'])) {
     $identificacion = $_POST['txtIdentificacion'];
     $contrasenna = $_POST['txtContrasenna'];
+
+    InicioSesionModel($identificacion,$contrasenna);
 }
 
 if(isset($_POST['btnRecuperarContrasenna'])) {
