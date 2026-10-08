@@ -84,7 +84,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/InicioController.ph
     </div>
 
     <?php IncludeJS(); ?>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
     <script src="../assets/js/register.js"></script>
 
 </body>

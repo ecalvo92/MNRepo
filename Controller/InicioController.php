@@ -12,3 +12,14 @@ if(isset($_POST['btnRegistro'])) {
     }
 
 }
+
+if(isset($_POST['btnInicioSesion'])) {
+
+    $identificacion = $_POST['txtIdentificacion'];
+    $contrasenna = $_POST['txtContrasenna'];
+}
+
+if(isset($_POST['btnRecuperarContrasenna'])) {
+
+    $identificacion = $_POST['txtIdentificacion'];
+}
