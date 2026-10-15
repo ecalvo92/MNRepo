@@ -40,3 +40,43 @@ function InicioSesionModel($identificacion,$contrasenna)
         return null;
     }
 }
+
+function ConsultarIdentificacionModel($identificacion)
+{
+    try{
+        $context = Conectar();
+
+        $sql = "CALL spConsultarIdentificacion('$identificacion')";
+        $response = $context -> query($sql);
+
+        $data = null;
+        While($row = $response -> fetch_assoc())
+        {
+            $data = $row;
+        }
+
+        Cerrar($context);
+        return $data;
+    } 
+    catch (Exception $exc) {
+        RegistrarError($exc, "ConsultarIdentificacionModel");
+        return null;
+    }
+}
+
+function ActualizarContrasennaModel($consecutivo, $contrasenna)
+{
+    try{
+        $context = Conectar();
+
+        $sql = "CALL spActualizarContrasenna('$consecutivo','$contrasenna')";
+        $response = $context -> query($sql);
+
+        Cerrar($context);
+        return $response;
+    } 
+    catch (Exception $exc) {
+        RegistrarError($exc, "ActualizarContrasennaModel");
+        return false;
+    }
+}

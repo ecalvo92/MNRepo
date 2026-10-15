@@ -33,4 +33,34 @@ if(isset($_POST['btnInicioSesion'])) {
 
 if(isset($_POST['btnRecuperarContrasenna'])) {
     $identificacion = $_POST['txtIdentificacion'];
+
+    $response = ConsultarIdentificacionModel($identificacion);
+
+    if($response) {
+        $contrasennaTemporal = GenerarContrasennaTemporal();
+    
+        $responseUpdate = ActualizarContrasennaModel($response['Consecutivo'], $contrasennaTemporal);
+
+        if($responseUpdate) {
+            //enviar un correo electrónico
+
+            header("Location: ../../View/Inicio/login.php");
+            exit();   
+        }
+    }
+
+    $_POST["mensaje"] = "No se ha podido recuperar su acceso al sistema";
+}
+
+function GenerarContrasennaTemporal()
+{
+    $caracteres = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
+    $longitud = 6;
+    $resultado = '';
+
+    for ($i = 0; $i < $longitud; $i++) {
+        $resultado .= $caracteres[random_int(0, strlen($caracteres) - 1)];
+    }
+
+    return $resultado;
 }

@@ -23,6 +23,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/InicioController.ph
 
             <form action="" method="POST" id="forgotPasswordForm" class="needs-validation" novalidate>
 
+                <?php if(isset($_POST["mensaje"])) { ?>
+
+                    <div class="alert alert-secondary text-center" role="alert">
+                        <?php echo $_POST["mensaje"]; ?>
+                    </div>
+
+                <?php } ?>
+
                 <div class="login-form-group">
                     <label for="txtIdentificacion" class="login-form-label">Identificación</label>
                     <div class="login-input-group">
