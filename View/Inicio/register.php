@@ -25,7 +25,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/InicioController.ph
 
                 <?php if(isset($_POST["mensaje"])) { ?>
 
-                    <div class="alert alert-secondary d-flex justify-content-center" role="alert">
+                    <div class="alert alert-secondary text-center" role="alert">
                         <?php echo $_POST["mensaje"]; ?>
                     </div>
 
