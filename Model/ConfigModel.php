@@ -10,3 +10,16 @@ function Cerrar($context)
 {
     $context -> close();
 }
+
+function RegistrarError($exc, $accion)
+{
+    $context = Conectar();
+
+    $error = $context -> real_escape_string($exc -> getMessage());
+    $idUsuario = 0;
+
+    $sql = "CALL spRegistrarError('$error','$accion','$idUsuario')";
+    $response = $context -> query($sql);
+
+    Cerrar($context);
+}

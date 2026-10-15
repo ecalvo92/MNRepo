@@ -12,7 +12,8 @@ function RegistroModel($identificacion,$nombre,$correoElectronico,$contrasenna)
         Cerrar($context);
         return $response;
     } 
-    catch (Exception $e) {
+    catch (Exception $exc) {
+        RegistrarError($exc, "RegistroModel");
         return false;
     }
 }
@@ -34,7 +35,8 @@ function InicioSesionModel($identificacion,$contrasenna)
         Cerrar($context);
         return $data;
     } 
-    catch (Exception $e) {
+    catch (Exception $exc) {
+        RegistrarError($exc, "InicioSesionModel");
         return null;
     }
 }
