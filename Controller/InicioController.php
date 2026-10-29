@@ -42,7 +42,12 @@ if(isset($_POST['btnRecuperarContrasenna'])) {
         $responseUpdate = ActualizarContrasennaModel($response['Consecutivo'], $contrasennaTemporal);
 
         if($responseUpdate) {
-            //enviar un correo electrónico
+
+            $plantilla = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/MNRepo/View/template/RecuperarAcceso.html');
+            $plantilla = str_replace("{{TEMPORAL}}", $contrasennaTemporal, $plantilla);
+            $plantilla = str_replace("{{NOMBRE}}", $response['Nombre'], $plantilla);
+
+            EnviarCorreoElectronico("Recuperación de Acceso", $plantilla, $response['CorreoElectronico']);
 
             header("Location: ../../View/Inicio/login.php");
             exit();   
@@ -63,4 +68,45 @@ function GenerarContrasennaTemporal()
     }
 
     return $resultado;
+}
+
+function EnviarCorreoElectronico($asunto, $contenido, $destinatario)
+{
+    try
+        {
+            require 'PHPMailer/src/PHPMailer.php';
+            require 'PHPMailer/src/SMTP.php';
+
+            $correoSalida = "@gmail.com";
+            $contrasennaSalida = "";
+
+            if($contrasennaSalida == "")
+            {
+                return true; // Simulación de envío exitoso
+            }
+
+            $mail = new PHPMailer();
+            $mail->CharSet = 'UTF-8';
+
+            $mail->IsSMTP();
+            $mail->IsHTML(true);
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+            $mail->SMTPAuth = true;
+            $mail->Username = $correoSalida;
+            $mail->Password = $contrasennaSalida;
+
+            $mail->SetFrom($correoSalida);
+            $mail->Subject = $asunto;
+            $mail->MsgHTML($contenido);
+            $mail->AddAddress($destinatario);
+            $mail->send();
+            return true;
+        }
+        catch (Exception $e)
+        {
+            AddError($e, 'EnviarCorreo');
+            return false;
+        }
 }

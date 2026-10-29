@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperación de Acceso</title>
+  <style>
+    @media only screen and (max-width: 620px) {
+      .contenedor { width: 100% !important; }
+      .contenido  { padding: 24px 20px !important; }
+      .clave      { font-size: 22px !important; letter-spacing: 2px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0; padding:0; background-color:#f2f4f8; font-family:'Segoe UI', Arial, Helvetica, sans-serif;">
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f4f8;">
+    <tr>
+      <td align="center" style="padding:30px 12px;">
+
+        <table role="presentation" class="contenedor" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background-color:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+
+          <!-- Encabezado -->
+          <tr>
+            <td align="center" style="background-color:#1f4e8c; padding:28px 20px;">
+              <h1 style="margin:0; font-size:22px; font-weight:600; color:#ffffff;">Recuperación de Acceso</h1>
+            </td>
+          </tr>
+
+          <!-- Contenido -->
+          <tr>
+            <td class="contenido" style="padding:36px 40px; color:#333333; font-size:15px; line-height:1.6;">
+
+              <p style="margin:0 0 16px 0; font-size:17px;">Hola, <strong>{{NOMBRE}}</strong>:</p>
+
+              <p style="margin:0 0 24px 0;">
+                Recibimos una solicitud para recuperar el acceso a tu cuenta.
+                Utiliza la siguiente contraseña temporal para iniciar sesión:
+              </p>
+
+              <!-- Contraseña temporal -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="background-color:#eef3fa; border:1px dashed #1f4e8c; border-radius:6px; padding:18px 10px;">
+                    <span style="display:block; font-size:12px; color:#666666; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Contraseña temporal</span>
+                    <span class="clave" style="font-family:'Courier New', Courier, monospace; font-size:26px; font-weight:bold; color:#1f4e8c; letter-spacing:3px;">{{TEMPORAL}}</span>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:24px 0 0 0;">
+                Por tu seguridad, te recomendamos cambiar esta contraseña inmediatamente después de iniciar sesión.
+              </p>
+
+              <p style="margin:16px 0 0 0; font-size:13px; color:#777777;">
+                Si tú no solicitaste este cambio, comunícate con el administrador del sistema.
+              </p>
+
+            </td>
+          </tr>
+
+          <!-- Pie -->
+          <tr>
+            <td align="center" style="background-color:#f7f8fa; padding:18px 20px; font-size:12px; color:#999999; border-top:1px solid #e6e9ef;">
+              Este es un mensaje automático, por favor no respondas a este correo.
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
