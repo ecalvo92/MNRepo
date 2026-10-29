@@ -2,6 +2,10 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Model/InicioModel.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/ConfigController.php';
 
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 if(isset($_POST['btnRegistro'])) {
     $identificacion = $_POST['txtIdentificacion'];
     $nombre = $_POST['txtNombre'];
@@ -25,6 +29,9 @@ if(isset($_POST['btnInicioSesion'])) {
     $response = InicioSesionModel($identificacion,$contrasenna);
 
     if($response) {
+
+        $_SESSION['NombreUsuario'] = $response['Nombre'];
+
         header("Location: ../../View/Inicio/home.php");
         exit();
     }
