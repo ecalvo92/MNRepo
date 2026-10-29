@@ -64,3 +64,9 @@ if(isset($_POST['btnRecuperarContrasenna'])) {
 
     $_POST["mensaje"] = "No se ha podido recuperar su acceso al sistema";
 }
+
+if(isset($_POST['btnCerrarSesion'])) {
+    session_destroy();
+    header("Location: ../../View/Inicio/login.php");
+    exit();
+}

@@ -1,4 +1,5 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/InicioController.php';
 
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -56,8 +57,13 @@ function MostrarHeader()
                     <li>
                     <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item text-danger" href="page-login.html"><i class="bi bi-box-arrow-right"></i>
-                        Cerrar Sesión</a></li>
+                    <li>
+                        <form action="" method="POST">
+                            <button type="submit" class="dropdown-item text-danger" id="btnCerrarSesion" name="btnCerrarSesion">
+                                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                            </button>
+                        </form>
+                    </li>
                 </ul>
                 </div>
             </div>
