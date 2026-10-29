@@ -6,7 +6,7 @@ function IncludeCSS()
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Proyecto Web - MN</title>
+            <title>Reserva MN</title>
 
             <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
             <link rel="stylesheet" href="../assets/libs/bootstrap/css/bootstrap.min.css">

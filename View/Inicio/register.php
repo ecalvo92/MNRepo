@@ -18,8 +18,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/InicioController.ph
 
             <a href="login.php" class="login-brand text-decoration-none">
                 <i class="bi bi-asterisk"></i>
-                <span>Proyecto MN</span>
+                <span>Reserva MN</span>
             </a>
+            <h4 class="login-title">Crear Cuenta</h4>
 
             <form action="" method="POST" id="registerForm" class="needs-validation" novalidate>
 

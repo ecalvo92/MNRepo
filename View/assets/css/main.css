@@ -1814,7 +1814,6 @@ span.flatpickr-weekday {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--brand-forest-dark);
-  margin-bottom: 1.5rem;
   text-decoration: none;
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1836,7 +1835,7 @@ span.flatpickr-weekday {
   font-weight: 800;
   color: var(--text-main);
   text-align: center;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.55rem;
   letter-spacing: -0.02em;
 }
 
@@ -2141,6 +2140,20 @@ span.flatpickr-weekday {
 
 .navbar-profile-btn:hover .navbar-profile-img {
   border-color: var(--brand-lime-hover);
+}
+
+.navbar-profile-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--brand-forest-medium);
+  color: var(--brand-lime);
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .navbar-profile-name {

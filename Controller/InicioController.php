@@ -31,6 +31,7 @@ if(isset($_POST['btnInicioSesion'])) {
     if($response) {
 
         $_SESSION['NombreUsuario'] = $response['Nombre'];
+        $_SESSION['NombreRol'] = $response['NombreRol'];
 
         header("Location: ../../View/Inicio/home.php");
         exit();

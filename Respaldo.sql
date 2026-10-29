@@ -45,6 +45,30 @@ INSERT INTO `terror` VALUES (1,'Duplicate entry \'dmu','RegistroModel',0,'2026-1
 UNLOCK TABLES;
 
 --
+-- Table structure for table `trol`
+--
+
+DROP TABLE IF EXISTS `trol`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `trol` (
+  `Consecutivo` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreRol` varchar(100) NOT NULL,
+  PRIMARY KEY (`Consecutivo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trol`
+--
+
+LOCK TABLES `trol` WRITE;
+/*!40000 ALTER TABLE `trol` DISABLE KEYS */;
+INSERT INTO `trol` VALUES (1,'Usuario'),(2,'Administrador');
+/*!40000 ALTER TABLE `trol` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tusuario`
 --
 
@@ -58,9 +82,12 @@ CREATE TABLE `tusuario` (
   `CorreoElectronico` varchar(100) NOT NULL,
   `Contrasenna` varchar(15) NOT NULL,
   `Estado` bit(1) NOT NULL,
+  `ConsecutivoRol` int(11) NOT NULL,
   PRIMARY KEY (`Consecutivo`),
   UNIQUE KEY `UK_tusuario_Identificacion` (`Identificacion`),
-  UNIQUE KEY `UK_tusuario_CorreoElectronico` (`CorreoElectronico`)
+  UNIQUE KEY `UK_tusuario_CorreoElectronico` (`CorreoElectronico`),
+  KEY `FK_TUSUARIO_ConsecutivoRol` (`ConsecutivoRol`),
+  CONSTRAINT `FK_TUSUARIO_ConsecutivoRol` FOREIGN KEY (`ConsecutivoRol`) REFERENCES `trol` (`Consecutivo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -70,7 +97,7 @@ CREATE TABLE `tusuario` (
 
 LOCK TABLES `tusuario` WRITE;
 /*!40000 ALTER TABLE `tusuario` DISABLE KEYS */;
-INSERT INTO `tusuario` VALUES (1,'304590415','EDUARDO JOSE CALVO CASTILLO','ecalvo90415@ufide.ac.cr','90415',_binary ''),(2,'119500867','DAVE JOEL MUÑOZ MATARRITA','dmunoz00867@ufide.ac.cr','NBJY53',_binary '');
+INSERT INTO `tusuario` VALUES (1,'304590415','EDUARDO JOSE CALVO CASTILLO','ecalvo90415@ufide.ac.cr','90415',_binary '',2),(2,'119500867','DAVE JOEL MUÑOZ MATARRITA','dmunoz00867@ufide.ac.cr','YCD4FR',_binary '',1);
 /*!40000 ALTER TABLE `tusuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,8 +172,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spIniciarSesionUsuario`(
 )
 BEGIN
 
-	SELECT 	Consecutivo,Identificacion,Nombre,CorreoElectronico,Estado
-	FROM	tusuario
+	SELECT 	U.Consecutivo,Identificacion,Nombre,CorreoElectronico,Estado,ConsecutivoRol,R.NombreRol
+	FROM	tusuario U
+    INNER JOIN trol R ON U.ConsecutivoRol = R.Consecutivo
 	WHERE 	Identificacion = pIdentificacion
 		AND Contrasenna = pContrasenna
         AND Estado = 1;
@@ -201,8 +229,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spRegistrarUsuario`(
 )
 BEGIN
 
-	INSERT INTO tusuario(Identificacion,Nombre,CorreoElectronico,Contrasenna,Estado)
-	VALUES (pIdentificacion,pNombre,pCorreoElectronico,pContrasenna,1);
+	INSERT INTO tusuario(Identificacion,Nombre,CorreoElectronico,Contrasenna,Estado,ConsecutivoRol)
+	VALUES (pIdentificacion,pNombre,pCorreoElectronico,pContrasenna,1,1);
 
 END ;;
 DELIMITER ;
@@ -220,4 +248,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-14 20:35:22
+-- Dump completed on 2026-10-28 20:41:30

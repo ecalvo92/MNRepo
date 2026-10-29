@@ -8,14 +8,23 @@ if(session_status() == PHP_SESSION_NONE) {
 function MostrarHeader()
 {
     $nombreUsuario = "";
+    $nombreRol = "";
 
     if(isset($_SESSION['NombreUsuario'])) {
         $nombreUsuario = $_SESSION['NombreUsuario'];
+        $nombreRol = $_SESSION['NombreRol'];
     }
     else
     {
         header("Location: ../../View/Inicio/login.php");
         exit();
+    }
+
+    $inicialesUsuario = "";
+    $partesNombre = preg_split('/\s+/u', trim($nombreUsuario), -1, PREG_SPLIT_NO_EMPTY);
+
+    foreach (array_slice($partesNombre, 0, 2) as $parteNombre) {
+        $inicialesUsuario .= mb_strtoupper(mb_substr($parteNombre, 0, 1, 'UTF-8'), 'UTF-8');
     }
 
     echo '
@@ -47,8 +56,11 @@ function MostrarHeader()
                 <div class="dropdown ms-2">
                 <button class="navbar-profile-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false" id="profile-dropdown">
-                    <img src="../assets/images/avatar.png" alt="Profile Image" class="navbar-profile-img">
-                    <span class="navbar-profile-name d-none d-md-inline">' . $nombreUsuario . '</span>
+                    <span class="navbar-profile-initials" aria-hidden="true">' . htmlspecialchars($inicialesUsuario, ENT_QUOTES, 'UTF-8') . '</span>
+                    <span class="d-none d-md-flex flex-column align-items-start">
+                        <span class="navbar-profile-name">' . $nombreUsuario . '</span>
+                        <span class="navbar-profile-role">' . $nombreRol . '</span>
+                    </span>
                     <i class="bi bi-chevron-down navbar-profile-caret"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-profile" aria-labelledby="profile-dropdown">
@@ -91,7 +103,7 @@ function MostrarSidebar()
             <!-- Brand Logo / Identity -->
             <a href="index.html" class="sidebar-brand">
             <i class="bi bi-asterisk"></i>
-            <span>Proyecto MN</span>
+            <span>Reserva MN</span>
             </a>
 
             <!-- Navigation Menu -->
@@ -132,7 +144,7 @@ function IncludeCSS()
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Proyecto Web - MN</title>
+            <title>Reserva MN</title>
 
             <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
             <link rel="stylesheet" href="../assets/libs/bootstrap/css/bootstrap.min.css">
