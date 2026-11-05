@@ -31,7 +31,7 @@ CREATE TABLE `terror` (
   `ConsecutivoUsuario` int(11) DEFAULT NULL,
   `FechaHora` datetime DEFAULT NULL,
   PRIMARY KEY (`Consecutivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,8 +40,35 @@ CREATE TABLE `terror` (
 
 LOCK TABLES `terror` WRITE;
 /*!40000 ALTER TABLE `terror` DISABLE KEYS */;
-INSERT INTO `terror` VALUES (1,'Duplicate entry \'dmu','RegistroModel',0,'2026-10-14 19:33:42'),(2,'Duplicate entry \'dmunoz00867@ufide.ac.cr\' for key \'UK_tusuario_CorreoElectronico\'','RegistroModel',0,'2026-10-14 19:35:14');
+INSERT INTO `terror` VALUES (1,'Duplicate entry \'dmu','RegistroModel',0,'2026-10-14 19:33:42'),(2,'Duplicate entry \'dmunoz00867@ufide.ac.cr\' for key \'UK_tusuario_CorreoElectronico\'','RegistroModel',0,'2026-10-14 19:35:14'),(3,'You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near \')\' at line 1','ActualizarContrasennaModel',0,'2026-11-04 19:36:59');
 /*!40000 ALTER TABLE `terror` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `thabitaciones`
+--
+
+DROP TABLE IF EXISTS `thabitaciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `thabitaciones` (
+  `Consecutivo` int(11) NOT NULL AUTO_INCREMENT,
+  `Capacidad` int(11) NOT NULL,
+  `Precio` decimal(10,2) NOT NULL,
+  `Caracteristicas` varchar(500) NOT NULL,
+  `Disponible` bit(1) NOT NULL,
+  `Imagen` varchar(500) NOT NULL,
+  PRIMARY KEY (`Consecutivo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `thabitaciones`
+--
+
+LOCK TABLES `thabitaciones` WRITE;
+/*!40000 ALTER TABLE `thabitaciones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `thabitaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -97,7 +124,7 @@ CREATE TABLE `tusuario` (
 
 LOCK TABLES `tusuario` WRITE;
 /*!40000 ALTER TABLE `tusuario` DISABLE KEYS */;
-INSERT INTO `tusuario` VALUES (1,'304590415','EDUARDO JOSE CALVO CASTILLO','ecalvo90415@ufide.ac.cr','90415',_binary '',2),(2,'119500867','DAVE JOEL MUÑOZ MATARRITA','dmunoz00867@ufide.ac.cr','YCD4FR',_binary '',1);
+INSERT INTO `tusuario` VALUES (1,'304590415','EDUARDO JOSE CALVO CASTILLO','ecalvo90415@ufide.ac.cr','12345',_binary '',2),(2,'119500867','DAVE JOEL MUÑOZ MATARRITA','dmunoz00867@ufide.ac.cr','YCD4FR',_binary '',1);
 /*!40000 ALTER TABLE `tusuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,14 +142,22 @@ UNLOCK TABLES;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spActualizarContrasenna`(
-	pConsecutivo 	int,
-	pContrasenna	varchar(15)
+	pConsecutivo 		int,
+	pContrasenna		varchar(15),
+    pContrasennaActual	varchar(15)
 )
 BEGIN
 
+	IF(pContrasennaActual = '') THEN
+		SET pContrasennaActual = NULL;
+	END IF;
+
 	UPDATE 	tusuario
     SET 	Contrasenna = pContrasenna
-    WHERE	Consecutivo	= pConsecutivo;
+    WHERE	Consecutivo	= pConsecutivo
+		AND Contrasenna = IFNULL(pContrasennaActual,Contrasenna);
+        
+	SELECT ROW_COUNT() > 0 AS 'Actualizado';
 
 END ;;
 DELIMITER ;
@@ -248,4 +283,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-28 20:41:30
+-- Dump completed on 2026-11-05  8:28:13

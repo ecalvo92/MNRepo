@@ -100,7 +100,7 @@ function MostrarSidebar()
     echo '
         <div class="sidebar-wrapper" id="sidebar">
             <!-- Brand Logo / Identity -->
-            <a href="index.html" class="sidebar-brand">
+            <a href="../Inicio/home.php" class="sidebar-brand">
             <i class="bi bi-asterisk"></i>
             <span>Reserva MN</span>
             </a>
@@ -120,14 +120,11 @@ function MostrarSidebar()
                 </ul>
             </div>
 
-            <!-- Group: Components -->
             <div class="sidebar-menu-section">
-                <div class="sidebar-menu-title">Components</div>
-                <ul class="sidebar-menu-list">
                 <li class="sidebar-menu-item">
                     <a href="tables-basic.html" class="sidebar-menu-link" id="menu-basictables" title="Basic Tables">
                     <i class="bi bi-table"></i>
-                    <span>Basic Tables</span>
+                    <span>Habitaciones</span>
                     </a>
                 </li>
                 </ul>
