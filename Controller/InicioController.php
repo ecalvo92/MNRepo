@@ -32,6 +32,8 @@ if(isset($_POST['btnInicioSesion'])) {
 
         $_SESSION['NombreUsuario'] = $response['Nombre'];
         $_SESSION['NombreRol'] = $response['NombreRol'];
+        $_SESSION['ConsecutivoUsuario'] = $response['Consecutivo'];
+        $_SESSION['CorreoElectronico'] = $response['CorreoElectronico'];
 
         header("Location: ../../View/Inicio/home.php");
         exit();
@@ -48,7 +50,7 @@ if(isset($_POST['btnRecuperarContrasenna'])) {
     if($response) {
         $contrasennaTemporal = GenerarContrasennaTemporal();
     
-        $responseUpdate = ActualizarContrasennaModel($response['Consecutivo'], $contrasennaTemporal);
+        $responseUpdate = ActualizarContrasennaModel($response['Consecutivo'], $contrasennaTemporal, null);
 
         if($responseUpdate) {
 

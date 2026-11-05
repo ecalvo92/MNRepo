@@ -64,16 +64,18 @@ function ConsultarIdentificacionModel($identificacion)
     }
 }
 
-function ActualizarContrasennaModel($consecutivo, $contrasenna)
+function ActualizarContrasennaModel($consecutivo, $contrasennaNueva, $contrasennaActual)
 {
     try{
         $context = Conectar();
 
-        $sql = "CALL spActualizarContrasenna('$consecutivo','$contrasenna')";
+        $sql = "CALL spActualizarContrasenna('$consecutivo','$contrasennaNueva', '$contrasennaActual')";
         $response = $context -> query($sql);
 
+        $actualizado = (bool) $response -> fetch_row()[0];
+
         Cerrar($context);
-        return $response;
+        return $actualizado;
     } 
     catch (Exception $exc) {
         RegistrarError($exc, "ActualizarContrasennaModel");

@@ -64,8 +64,7 @@ function MostrarHeader()
                     <i class="bi bi-chevron-down navbar-profile-caret"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-profile" aria-labelledby="profile-dropdown">
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> My Account</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Settings</a></li>
+                    <li><a class="dropdown-item" href="../Personal/cuenta.php"><i class="bi bi-person"></i> Mi Cuenta </a></li>
                     <li>
                     <hr class="dropdown-divider">
                     </li>
@@ -159,9 +158,12 @@ function IncludeCSS()
 function IncludeJS()
 {
     echo '
+    <script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
         <script src="../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="../assets/libs/apexcharts/apexcharts.min.js"></script>
         <script src="../assets/libs/flatpickr/flatpickr.min.js"></script>
         <script src="../assets/js/dashboard.js"></script>
+        <script src="../assets/js/auth.js"></script>
     ';
 }
