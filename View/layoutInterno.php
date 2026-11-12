@@ -97,6 +97,17 @@ function MostrarFooter()
 
 function MostrarSidebar()
 {
+    $consecutivoRol = "";
+
+    if(isset($_SESSION['ConsecutivoRol'])) {
+        $consecutivoRol = $_SESSION['ConsecutivoRol'];
+    }
+    else
+    {
+        header("Location: ../../View/Inicio/login.php");
+        exit();
+    }
+
     echo '
         <div class="sidebar-wrapper" id="sidebar">
             <!-- Brand Logo / Identity -->
@@ -107,29 +118,34 @@ function MostrarSidebar()
 
             <!-- Navigation Menu -->
             <div class="flex-grow-1 overflow-y-auto">
-            <!-- Group: Menu -->
-            <div class="sidebar-menu-section">
-                <div class="sidebar-menu-title">Menu</div>
-                <ul class="sidebar-menu-list">
-                <li class="sidebar-menu-item">
-                    <a href="index.html" class="sidebar-menu-link active" id="menu-overview" title="Overview">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                    </a>
-                </li>
-                </ul>
-            </div>
+            
+                <div class="sidebar-menu-section">
+                    <ul class="sidebar-menu-list">
+                        <li class="sidebar-menu-item">
+                            <a href="" class="sidebar-menu-link active" id="menu-overview" title="Overview">
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>';
 
-            <div class="sidebar-menu-section">
-                <li class="sidebar-menu-item">
-                    <a href="tables-basic.html" class="sidebar-menu-link" id="menu-basictables" title="Basic Tables">
-                    <i class="bi bi-table"></i>
-                    <span>Habitaciones</span>
-                    </a>
-                </li>
-                </ul>
-            </div>
-            </div>
+                if($consecutivoRol == "2") 
+                {                
+                    echo '
+                        <div class="sidebar-menu-section">
+                            <ul class="sidebar-menu-list">
+                                <li class="sidebar-menu-item">
+                                    <a href="../Habitaciones/habitaciones.php" class="sidebar-menu-link" id="menu-basictables" title="Basic Tables">
+                                    <i class="bi bi-table"></i>
+                                    <span>Habitaciones</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>';
+                }
+
+            echo '</div>
         </div>
     ';
 }
@@ -163,4 +179,13 @@ function IncludeJS()
         <script src="../assets/js/dashboard.js"></script>
         <script src="../assets/js/auth.js"></script>
     ';
+}
+
+function ValidarVistaAdmin()
+{
+    if(!isset($_SESSION['ConsecutivoRol']) || $_SESSION['ConsecutivoRol'] != "2")
+    {
+        header("Location: ../../View/Inicio/home.php");
+        exit();
+    }
 }

@@ -32,6 +32,7 @@ if(isset($_POST['btnInicioSesion'])) {
 
         $_SESSION['NombreUsuario'] = $response['Nombre'];
         $_SESSION['NombreRol'] = $response['NombreRol'];
+        $_SESSION['ConsecutivoRol'] = $response['ConsecutivoRol'];
         $_SESSION['ConsecutivoUsuario'] = $response['Consecutivo'];
         $_SESSION['CorreoElectronico'] = $response['CorreoElectronico'];
 
