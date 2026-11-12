@@ -3246,3 +3246,15 @@ span.flatpickr-weekday {
 .text-lime {
   color: var(--brand-lime) !important;
 }
+
+.text-justify {
+  text-align: justify !important;
+}
+
+#tablaPrincipal,
+#tablaPrincipal > :not(caption) > * > * {
+  background-color: #fff !important;
+  box-shadow: none !important;
+  --bs-table-bg: #fff;
+  --bs-table-accent-bg: transparent;
+}

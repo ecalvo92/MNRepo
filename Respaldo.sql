@@ -31,7 +31,7 @@ CREATE TABLE `terror` (
   `ConsecutivoUsuario` int(11) DEFAULT NULL,
   `FechaHora` datetime DEFAULT NULL,
   PRIMARY KEY (`Consecutivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `terror` (
 
 LOCK TABLES `terror` WRITE;
 /*!40000 ALTER TABLE `terror` DISABLE KEYS */;
-INSERT INTO `terror` VALUES (1,'Duplicate entry \'dmu','RegistroModel',0,'2026-10-14 19:33:42'),(2,'Duplicate entry \'dmunoz00867@ufide.ac.cr\' for key \'UK_tusuario_CorreoElectronico\'','RegistroModel',0,'2026-10-14 19:35:14'),(3,'You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near \')\' at line 1','ActualizarContrasennaModel',0,'2026-11-04 19:36:59');
+INSERT INTO `terror` VALUES (1,'Duplicate entry \'dmu','RegistroModel',0,'2026-10-14 19:33:42'),(2,'Duplicate entry \'dmunoz00867@ufide.ac.cr\' for key \'UK_tusuario_CorreoElectronico\'','RegistroModel',0,'2026-10-14 19:35:14'),(3,'You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near \')\' at line 1','ActualizarContrasennaModel',0,'2026-11-04 19:36:59'),(4,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:46'),(5,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:56'),(6,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:58'),(7,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:34:55');
 /*!40000 ALTER TABLE `terror` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +59,7 @@ CREATE TABLE `thabitaciones` (
   `Disponible` bit(1) NOT NULL,
   `Imagen` varchar(500) NOT NULL,
   PRIMARY KEY (`Consecutivo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +68,7 @@ CREATE TABLE `thabitaciones` (
 
 LOCK TABLES `thabitaciones` WRITE;
 /*!40000 ALTER TABLE `thabitaciones` DISABLE KEYS */;
+INSERT INTO `thabitaciones` VALUES (1,5,200.00,'Espacio y camas\n\nEntre 40 y 60 m² si es habitación familiar, o más si es una suite o apartamento\nCombinaciones comunes: 1 cama king + 2 camas individuales, 2 camas queen + 1 sofá cama, o 1 cama matrimonial + literas\nSi hay sofá cama, conviene confirmar que sea cómodo para un adulto\n\nBaño\n\nBaño privado completo con ducha (a veces con tina)\nAmenidades básicas: toallas para 5 personas, jabón, champú, secador de pelo\n\nComodidades en la habitación\n\nAire acondicionado o climatización\nWi-Fi gratuito\nTV',_binary '','https://stworld.jp/feature/PH/A63/hotel/01147/images/room_05a.jpg'),(2,5,200.00,'Espacio y camas\n\nEntre 40 y 60 m² si es habitación familiar, o más si es una suite o apartamento\nCombinaciones comunes: 1 cama king + 2 camas individuales, 2 camas queen + 1 sofá cama, o 1 cama matrimonial + literas\nSi hay sofá cama, conviene confirmar que sea cómodo para un adulto\n\nBaño\n\nBaño privado completo con ducha (a veces con tina)\nAmenidades básicas: toallas para 5 personas, jabón, champú, secador de pelo\n\nComodidades en la habitación\n\nAire acondicionado o climatización\nWi-Fi gratuito\nTV',_binary '','https://cdn.forbes.com.mx/2021/12/hoteles-de-lujo-seis-1024x682.jpg');
 /*!40000 ALTER TABLE `thabitaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +125,7 @@ CREATE TABLE `tusuario` (
 
 LOCK TABLES `tusuario` WRITE;
 /*!40000 ALTER TABLE `tusuario` DISABLE KEYS */;
-INSERT INTO `tusuario` VALUES (1,'304590415','EDUARDO JOSE CALVO CASTILLO','ecalvo90415@ufide.ac.cr','12345',_binary '',2),(2,'119500867','DAVE JOEL MUÑOZ MATARRITA','dmunoz00867@ufide.ac.cr','YCD4FR',_binary '',1);
+INSERT INTO `tusuario` VALUES (1,'304590415','EDUARDO JOSE CALVO CASTILLO','ecalvo90415@ufide.ac.cr','90415',_binary '',2),(2,'119500867','DAVE JOEL MUÑOZ MATARRITA','dmunoz00867@ufide.ac.cr','00867',_binary '',1);
 /*!40000 ALTER TABLE `tusuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,6 +166,67 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spActualizarDatosCuenta` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spActualizarDatosCuenta`(
+	pConsecutivo 		int,
+	pIdentificacion		varchar(20),
+    pNombre				varchar(250),
+    pCorreoElectronico	varchar(100)
+)
+BEGIN
+
+	UPDATE 	tusuario
+    SET 	Identificacion = pIdentificacion,
+			Nombre = pNombre,
+            CorreoElectronico = pCorreoElectronico
+    WHERE	Consecutivo	= pConsecutivo;
+        
+	SELECT ROW_COUNT() > 0 AS 'Actualizado';
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spConsultarHabitacionesAdmin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spConsultarHabitacionesAdmin`(
+
+)
+BEGIN
+
+	SELECT 	Consecutivo,
+			Capacidad,
+			Precio,
+			Caracteristicas,
+			Disponible,
+			Imagen
+	FROM 	thabitaciones;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spConsultarIdentificacion` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -184,6 +246,32 @@ BEGIN
 	FROM	tusuario
 	WHERE 	Identificacion = pIdentificacion
         AND Estado = 1;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spConsultarUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spConsultarUsuario`(
+	pConsecutivo 	int
+)
+BEGIN
+
+	SELECT 	U.Consecutivo,Identificacion,Nombre,CorreoElectronico,Estado,ConsecutivoRol,R.NombreRol
+	FROM	tusuario U
+    INNER JOIN trol R ON U.ConsecutivoRol = R.Consecutivo
+	WHERE 	U.Consecutivo = pConsecutivo;
     
 END ;;
 DELIMITER ;
@@ -283,4 +371,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-05  8:28:13
+-- Dump completed on 2026-11-11 20:47:51

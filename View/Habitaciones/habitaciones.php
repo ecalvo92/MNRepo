@@ -1,13 +1,13 @@
 <?php include_once '../layoutInterno.php'; 
-      include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/PersonalController.php';
+      include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/HabitacionesController.php';
 
       ValidarVistaAdmin();
 
-      $datos = ConsultarUsuario();
+      $datos = ConsultarHabitacionesAdmin();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <?php IncludeCSS(); ?>
 
@@ -39,32 +39,61 @@
 
                     <?php } ?>
 
-                    <div class="login-form-group">
-                        <label for="txtIdentificacion" class="login-form-label">Identificación</label>
-                        <div class="login-input-group">
-                            <i class="bi bi-person input-icon"></i>
-                            <input type="text" id="txtIdentificacion" name="txtIdentificacion"
-                                value="<?php echo $datos['Identificacion']; ?>" class="login-input"
-                                onkeyup="ConsultarNombre()">
-                        </div>
-                    </div>
-
-                    <div class="login-form-group">
-                        <label for="txtNombre" class="login-form-label">Nombre Completo</label>
-                        <div class="login-input-group">
-                            <i class="bi bi-person-badge input-icon"></i>
-                            <input type="text" id="txtNombre" name="txtNombre" value="<?php echo $datos['Nombre']; ?>"
-                                class="login-input">
-                        </div>
-                    </div>
-
-                    <div class="login-form-group">
-                        <label for="txtCorreoElectronico" class="login-form-label">Correo Electrónico</label>
-                        <div class="login-input-group">
-                            <i class="bi bi-envelope input-icon"></i>
-                            <input type="text" id="txtCorreoElectronico" name="txtCorreoElectronico"
-                                value="<?php echo $datos['CorreoElectronico']; ?>" class="login-input">
-                        </div>
+                    <div class="table-responsive" >
+                        <table id="tablaPrincipal" class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th style="width: 10%;">Imagen</th>
+                                    <th>Características</th>
+                                    <th class="text-center">Capacidad</th>
+                                    <th class="text-end">Precio</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($datos as $habitacion) { ?>
+                                    <tr>
+                                        <td><strong><?php echo $habitacion['Consecutivo']; ?></strong></td>
+                                        <td>
+                                            <img src="<?php echo $habitacion['Imagen']; ?>" 
+                                                 alt="Habitación <?php echo $habitacion['Consecutivo']; ?>" 
+                                                 style="max-width: 180px; height: 120px; object-fit: cover; border-radius: 4px;">
+                                        </td>
+                                        <td class="text-justify">
+                                            <small><?php echo $habitacion['Caracteristicas']; ?></small>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong><?php echo $habitacion['Capacidad']; ?> personas</strong>
+                                        </td>
+                                        <td class="text-end">
+                                            <strong>$<?php echo number_format($habitacion['Precio'], 2); ?></strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <?php 
+                                                $disponible = $habitacion['Disponible'];
+                                                if($disponible) { 
+                                                    echo '<span class="badge bg-success">✓ Disponible</span>';
+                                                } else { 
+                                                    echo '<span class="badge bg-danger">✗ No disponible</span>';
+                                                }
+                                            ?>
+                                        </td>
+                                        <td class="text-center" class="text-nowrap">
+                                            <div class="d-flex gap-2 justify-content-center">
+                                                <a href="#" class="btn btn-sm btn-warning" title="Editar">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-danger" title="Eliminar">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>
@@ -77,7 +106,7 @@
     </div>
 
     <?php IncludeJS(); ?>
-    <script src="../assets/js/cuenta.js"></script>
+    <script src="../assets/js/habitaciones.js"></script>
 
 </body>
 
