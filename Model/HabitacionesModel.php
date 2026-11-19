@@ -24,3 +24,22 @@ function ConsultarHabitacionesAdminModel()
     }
 }
 
+function InactivarHabitacionModel($habitacionId)
+{
+    try{
+        $context = Conectar();
+
+        $sql = "CALL spInactivarHabitacion('$habitacionId')";
+        $response = $context -> query($sql);
+
+        $actualizado = (bool) $response -> fetch_row()[0];
+
+        Cerrar($context);
+        return $actualizado;
+    } 
+    catch (Exception $exc) {
+        RegistrarError($exc, "InactivarHabitacionModel");
+        return false;
+    }
+}
+

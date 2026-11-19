@@ -85,8 +85,8 @@
                                                 <a href="#" class="btn btn-sm btn-warning" title="Editar">
                                                     <i class="bi bi-pencil"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-sm btn-danger" title="Eliminar">
-                                                    <i class="bi bi-trash"></i>
+                                                <a class="btn btn-sm btn-danger btn-inactivar" data-id="<?php echo $habitacion['Consecutivo']; ?>" title="Cambiar Estado">
+                                                    <i class="bi bi-arrow-repeat"></i>
                                                 </a>
                                             </div>
                                         </td>
