@@ -23,9 +23,12 @@
             <div>
                 <h1 class="page-title">Habitaciones</h1>
             </div>
-        </div>
+            <div class="d-flex justify-content-end">
+                <a href="agregarHabitacion.php" class="btn-login"> Agregar</a>
+            </div>
+        </div>        
 
-        <div class="row g-4 mb-4">
+        <div class="row g-4">
 
             <!-- Column 1 -->
             <div class="col-12 col-lg-12">

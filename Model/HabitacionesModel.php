@@ -43,3 +43,20 @@ function InactivarHabitacionModel($habitacionId)
     }
 }
 
+function AgregarHabitacionModel($capacidad, $precio, $caracteristicas, $imagen)
+{
+    try{
+        $context = Conectar();
+
+        $sql = "CALL spRegistrarHabitacion('$capacidad', '$precio', '$caracteristicas', '$imagen')";
+        $response = $context -> query($sql);
+
+        Cerrar($context);
+        return $response;
+    } 
+    catch (Exception $exc) {
+        RegistrarError($exc, "AgregarHabitacionModel");
+        return false;
+    }
+}
+
