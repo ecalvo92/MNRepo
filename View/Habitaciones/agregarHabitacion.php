@@ -71,7 +71,7 @@
                             <label for="txtCaracteristicas" class="login-form-label">Características</label>
                             <div class="login-input-group align-items-start">
                                 <i class="bi bi-card-text input-icon" style="top: 0.8rem;"></i>
-                                <textarea id="txtCaracteristicas" name="txtCaracteristicas" rows="4"
+                                <textarea id="txtCaracteristicas" name="txtCaracteristicas" rows="6"
                                     class="login-input"></textarea>
                             </div>
                         </div>

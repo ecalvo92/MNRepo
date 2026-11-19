@@ -85,7 +85,7 @@
                                         </td>
                                         <td class="text-center" class="text-nowrap">
                                             <div class="d-flex gap-2 justify-content-center">
-                                                <a href="#" class="btn btn-sm btn-warning" title="Editar">
+                                                <a href="actualizarHabitacion.php?id=<?php echo $habitacion['Consecutivo']; ?>" class="btn btn-sm btn-warning" title="Editar">
                                                     <i class="bi bi-pencil"></i>
                                                 </a>
                                                 <a class="btn btn-sm btn-danger btn-inactivar" data-id="<?php echo $habitacion['Consecutivo']; ?>" title="Cambiar Estado">
