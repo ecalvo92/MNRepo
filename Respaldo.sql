@@ -31,7 +31,7 @@ CREATE TABLE `terror` (
   `ConsecutivoUsuario` int(11) DEFAULT NULL,
   `FechaHora` datetime DEFAULT NULL,
   PRIMARY KEY (`Consecutivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `terror` (
 
 LOCK TABLES `terror` WRITE;
 /*!40000 ALTER TABLE `terror` DISABLE KEYS */;
-INSERT INTO `terror` VALUES (1,'Duplicate entry \'dmu','RegistroModel',0,'2026-10-14 19:33:42'),(2,'Duplicate entry \'dmunoz00867@ufide.ac.cr\' for key \'UK_tusuario_CorreoElectronico\'','RegistroModel',0,'2026-10-14 19:35:14'),(3,'You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near \')\' at line 1','ActualizarContrasennaModel',0,'2026-11-04 19:36:59'),(4,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:46'),(5,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:56'),(6,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:58'),(7,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:34:55');
+INSERT INTO `terror` VALUES (1,'Duplicate entry \'dmu','RegistroModel',0,'2026-10-14 19:33:42'),(2,'Duplicate entry \'dmunoz00867@ufide.ac.cr\' for key \'UK_tusuario_CorreoElectronico\'','RegistroModel',0,'2026-10-14 19:35:14'),(3,'You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near \')\' at line 1','ActualizarContrasennaModel',0,'2026-11-04 19:36:59'),(4,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:46'),(5,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:56'),(6,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:58'),(7,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:34:55'),(8,'PROCEDURE mn_bd.spConsultarHabitacion does not exist','ConsultarHabitacionModel',0,'2026-11-18 20:39:55');
 /*!40000 ALTER TABLE `terror` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +59,7 @@ CREATE TABLE `thabitaciones` (
   `Disponible` bit(1) NOT NULL,
   `Imagen` varchar(500) NOT NULL,
   PRIMARY KEY (`Consecutivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `thabitaciones` (
 
 LOCK TABLES `thabitaciones` WRITE;
 /*!40000 ALTER TABLE `thabitaciones` DISABLE KEYS */;
-INSERT INTO `thabitaciones` VALUES (1,5,200.00,'Espacio y camas\n\nEntre 40 y 60 m² si es habitación familiar, o más si es una suite o apartamento\nCombinaciones comunes: 1 cama king + 2 camas individuales, 2 camas queen + 1 sofá cama, o 1 cama matrimonial + literas\nSi hay sofá cama, conviene confirmar que sea cómodo para un adulto\n\nBaño\n\nBaño privado completo con ducha (a veces con tina)\nAmenidades básicas: toallas para 5 personas, jabón, champú, secador de pelo\n\nComodidades en la habitación\n\nAire acondicionado o climatización\nWi-Fi gratuito\nTV',_binary '','https://stworld.jp/feature/PH/A63/hotel/01147/images/room_05a.jpg'),(2,5,200.00,'Espacio y camas\n\nEntre 40 y 60 m² si es habitación familiar, o más si es una suite o apartamento\nCombinaciones comunes: 1 cama king + 2 camas individuales, 2 camas queen + 1 sofá cama, o 1 cama matrimonial + literas\nSi hay sofá cama, conviene confirmar que sea cómodo para un adulto\n\nBaño\n\nBaño privado completo con ducha (a veces con tina)\nAmenidades básicas: toallas para 5 personas, jabón, champú, secador de pelo\n\nComodidades en la habitación\n\nAire acondicionado o climatización\nWi-Fi gratuito\nTV',_binary '','https://cdn.forbes.com.mx/2021/12/hoteles-de-lujo-seis-1024x682.jpg');
+INSERT INTO `thabitaciones` VALUES (1,10,550.00,'Espacio y camas, está cerca de la playa',_binary '','https://stworld.jp/feature/PH/A63/hotel/01147/images/room_05a.jpg'),(2,5,200.00,'Espacio y camas\r\n\r\nEntre 40 y 60 m² si es habitación familiar, o más si es una suite o apartamento\r\nCombinaciones comunes: 1 cama king + 2 camas individuales, 2 camas queen + 1 sofá cama, o 1 cama matrimonial + literas\r\nSi hay sofá cama, conviene confirmar que sea cómodo para un adulto\r\n\r\nBaño\r\n\r\nBaño privado completo con ducha (a veces con tina)\r\nAmenidades básicas: toallas para 5 personas, jabón, champú, secador de pelo\r\n\r\nComodidades en la habitación\r\n\r\nAire acondicionado o climatización\r\nWi-',_binary '','https://imagenes.computerhoy.20minutos.es/files/image_640_360/uploads/imagenes/2026/11/10/6af3128218ca55-49529143.jpeg'),(3,8,350.00,'Una habitación para ocho personas, como las que se encuentran en hostales, albergues o campamentos, está pensada para aprovechar al máximo el espacio sin sacrificar la comodidad ni la seguridad de quienes la comparten. Lo habitual es que cuente con cuatro o cinco literas, o bien dos literas dobles combinadas con camas individuales, distribuidas de manera que existan pasillos libres de al menos sesenta a ochenta centímetros para circular con tranquilidad. En cuanto al tamaño, se recomienda dispon',_binary '','https://cdn.forbes.com.mx/2021/12/hoteles-de-lujo-seis-1024x682.jpg');
 /*!40000 ALTER TABLE `thabitaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,6 +198,70 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spActualizarHabitacion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spActualizarHabitacion`(
+	pConsecutivo		int,
+	pCapacidad 			int,
+	pPrecio				decimal(10,2),
+	pCaracteristicas	varchar(500),
+	pImagen				varchar(500)
+)
+BEGIN
+
+	UPDATE 	thabitaciones
+    SET 	Capacidad = pCapacidad,
+			Precio = pPrecio,
+            Caracteristicas = pCaracteristicas,
+            Imagen = pImagen
+    WHERE	Consecutivo	= pConsecutivo;
+        
+	SELECT ROW_COUNT() > 0 AS 'Actualizado';
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spConsultarHabitacion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spConsultarHabitacion`(
+	pConsecutivo int
+)
+BEGIN
+
+	SELECT 	Consecutivo,
+			Capacidad,
+			Precio,
+			Caracteristicas,
+			Disponible,
+			Imagen
+	FROM 	thabitaciones
+    WHERE	Consecutivo = pConsecutivo;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spConsultarHabitacionesAdmin` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -279,6 +343,33 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spInactivarHabitacion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInactivarHabitacion`(
+	pConsecutivo int
+)
+BEGIN
+
+	UPDATE 	tHabitaciones
+    SET 	Disponible = CASE WHEN Disponible = true THEN false ELSE true END
+    WHERE	Consecutivo	= pConsecutivo;
+        
+	SELECT ROW_COUNT() > 0 AS 'Actualizado';
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spIniciarSesionUsuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -334,6 +425,33 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spRegistrarHabitacion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spRegistrarHabitacion`(
+	pCapacidad 			int,
+	pPrecio				decimal(10,2),
+	pCaracteristicas	varchar(500),
+	pImagen				varchar(500)
+)
+BEGIN
+
+	INSERT INTO thabitaciones(Capacidad,Precio,Caracteristicas,Disponible,Imagen)
+	VALUES (pCapacidad,pPrecio,pCaracteristicas,true,pImagen);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spRegistrarUsuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -371,4 +489,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-11 20:47:51
+-- Dump completed on 2026-11-18 20:58:02
