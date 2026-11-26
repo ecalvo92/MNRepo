@@ -1,5 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/InicioController.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Controller/CarritoController.php';
 
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -18,6 +19,22 @@ function MostrarHeader()
     {
         header("Location: ../../View/Inicio/login.php");
         exit();
+    }
+
+    $esAdmin = isset($_SESSION['ConsecutivoRol']) && $_SESSION['ConsecutivoRol'] == "2";
+    $resumenCarrito = "";
+
+    if(!$esAdmin)
+    {
+        ConsultarResumenCarrito();
+
+        $resumenCarrito = '
+                <span class="navbar-carrito-item" title="Cantidad total">
+                    <i class="bi bi-cart3"></i> Cantidad: <strong id="resumenCantidadTotal">' . (int) ($_SESSION['CantidadTotal'] ?? 0) . '</strong>
+                </span>
+                <span class="navbar-carrito-item" title="Total a pagar">
+                    <i class="bi bi-currency-dollar"></i> Total a pagar: <strong id="resumenPrecioTotal">$' . number_format((float) ($_SESSION['PrecioTotal'] ?? 0), 2) . '</strong>
+                </span>';
     }
 
     $inicialesUsuario = "";
@@ -41,12 +58,8 @@ function MostrarHeader()
                 </button>
             </div>
 
-            <!-- Mid navbar: search pill -->
-            <div class="navbar-search-wrapper">
-                <input type="text" class="navbar-search-input" placeholder="..." id="main-search">
-                <button class="navbar-search-btn" aria-label="Search">
-                <i class="bi bi-search"></i>
-                </button>
+            <!-- Mid navbar: cart summary -->
+            <div class="navbar-carrito-resumen">' . $resumenCarrito . '
             </div>
 
             <!-- Right actions -->
@@ -118,34 +131,48 @@ function MostrarSidebar()
 
             <!-- Navigation Menu -->
             <div class="flex-grow-1 overflow-y-auto">
-            
-                <div class="sidebar-menu-section">
-                    <ul class="sidebar-menu-list">
-                        <li class="sidebar-menu-item">
-                            <a href="" class="sidebar-menu-link active" id="menu-overview" title="Overview">
-                            <i class="bi bi-grid-fill"></i>
-                            <span>Habitaciones</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>';
+            ';
 
-                if($consecutivoRol == "2") 
-                {                
-                    echo '
+            if($consecutivoRol == "2")
+            {
+                echo '
                         <div class="sidebar-menu-section">
                             <ul class="sidebar-menu-list">
                                 <li class="sidebar-menu-item">
-                                    <a href="../Habitaciones/habitaciones.php" class="sidebar-menu-link" id="menu-basictables" title="Basic Tables">
+                                    <a href="../Habitaciones/habitaciones.php" class="sidebar-menu-link" id="menu-basictables">
                                     <i class="bi bi-table"></i>
                                     <span>Habitaciones</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>';
-                }
+            }
+            else
+            {
+                echo '
+                        <div class="sidebar-menu-section">
+                            <ul class="sidebar-menu-list">
+                                <li class="sidebar-menu-item">
+                                    <a href="../Inicio/home.php" class="sidebar-menu-link" id="menu-overview">
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Habitaciones</span>
+                                    </a>
+                                </li>
+                            </ul>
 
-            echo '</div>
+                            <ul class="sidebar-menu-list">
+                                <li class="sidebar-menu-item">
+                                    <a href="../Carrito/carrito.php" class="sidebar-menu-link" id="menu-carrito">
+                                    <i class="bi bi-cart3"></i>
+                                    <span>Mi Carrito</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>';
+            }
+
+            echo '
+            </div>
         </div>
     ';
 }

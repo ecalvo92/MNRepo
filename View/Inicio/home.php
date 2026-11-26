@@ -32,12 +32,6 @@
                 </div>
                 <?php } ?>
 
-                <div class="d-flex justify-content-end mb-3">
-                    <span class="badge bg-primary fs-6">
-                        <i class="bi bi-cart3"></i> Reservas: <span id="contadorCarrito">0</span>
-                    </span>
-                </div>
-
                 <div class="row g-4">
                     <?php foreach($datos as $habitacion) { ?>
                     <div class="col-12 col-md-4 col-xl-3">
@@ -82,15 +76,18 @@
                                         data-imagen="<?php echo htmlspecialchars($habitacion['Imagen']); ?>">
                                         <i class="bi bi-eye"></i> Ver más
                                     </button>
+
                                     <button type="button" class="btn btn-primary flex-fill btn-reservar"
                                         data-id="<?php echo $habitacion['Consecutivo']; ?>"
                                         <?php echo $habitacion['Inventario'] > 0 ? '' : 'disabled'; ?>>
                                         <i class="bi bi-calendar-check"></i> Reservar
                                     </button>
+
                                     <button type="button" class="btn btn-outline-danger flex-fill btn-quitar d-none"
                                         data-id="<?php echo $habitacion['Consecutivo']; ?>">
                                         <i class="bi bi-cart-dash"></i> Quitar
                                     </button>
+                                    
                                 </div>
                             </div>
                         </div>

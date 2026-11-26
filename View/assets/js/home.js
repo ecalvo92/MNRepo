@@ -28,24 +28,40 @@ $(document).on("click", ".btn-ver-mas", function () {
 
   $("#modalHabitacionNombre").text(boton.data("nombre"));
   $("#modalHabitacionDescripcion").text(boton.data("descripcion"));
-  $("#modalHabitacionImagen").attr("src", boton.data("imagen")).attr("alt", boton.data("nombre"));
+  $("#modalHabitacionImagen")
+    .attr("src", boton.data("imagen"))
+    .attr("alt", boton.data("nombre"));
 
   bootstrap.Modal.getOrCreateInstance("#modalHabitacion").show();
 });
 
-$(document).on("click", ".btn-reservar", function () {
+$(document).on("click", ".btn-quitar", function () {
   const id = String($(this).data("id"));
-  const carrito = obtenerCarrito();
-
-  if (!carrito.includes(id)) {
-    carrito.push(id);
-    guardarCarrito(carrito);
-  }
+  guardarCarrito(obtenerCarrito().filter((x) => x !== id));
   refrescarVista();
 });
 
-$(document).on("click", ".btn-quitar", function () {
+// Manejo del click en el botón "Reservar"
+$(document).on("click", ".btn-reservar", function () {
   const id = String($(this).data("id"));
-  guardarCarrito(obtenerCarrito().filter(x => x !== id));
-  refrescarVista();
+
+  $.ajax({
+    url: "../../Controller/CarritoController.php",
+    type: "POST",
+    dataType: "json",
+    data: {
+      habitacionId: id,
+      action: "btnAgregarHabitacionCarrito",
+    },
+    success: function (response) {
+      Swal.fire({
+        text: "Habitación agregada al carrito correctamente",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      }).then(() => {
+        location.reload();
+      });
+    },
+  });
+  
 });

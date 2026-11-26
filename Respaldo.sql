@@ -18,6 +18,37 @@ USE `mn_bd`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `tcarrito`
+--
+
+DROP TABLE IF EXISTS `tcarrito`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tcarrito` (
+  `Consecutivo` int(11) NOT NULL AUTO_INCREMENT,
+  `ConsecutivoUsuario` int(11) NOT NULL,
+  `ConsecutivoHabitacion` int(11) NOT NULL,
+  `FechaCarrito` datetime NOT NULL,
+  `Cantidad` int(11) NOT NULL,
+  PRIMARY KEY (`Consecutivo`),
+  KEY `fk_Carrito_Usuario` (`ConsecutivoUsuario`),
+  KEY `fk_Carrito_Habitacion` (`ConsecutivoHabitacion`),
+  CONSTRAINT `fk_Carrito_Habitacion` FOREIGN KEY (`ConsecutivoHabitacion`) REFERENCES `thabitaciones` (`Consecutivo`),
+  CONSTRAINT `fk_Carrito_Usuario` FOREIGN KEY (`ConsecutivoUsuario`) REFERENCES `tusuario` (`Consecutivo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tcarrito`
+--
+
+LOCK TABLES `tcarrito` WRITE;
+/*!40000 ALTER TABLE `tcarrito` DISABLE KEYS */;
+INSERT INTO `tcarrito` VALUES (1,2,2,'2026-11-25 20:44:22',1),(2,2,1,'2026-11-25 20:52:55',1);
+/*!40000 ALTER TABLE `tcarrito` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `terror`
 --
 
@@ -31,7 +62,7 @@ CREATE TABLE `terror` (
   `ConsecutivoUsuario` int(11) DEFAULT NULL,
   `FechaHora` datetime DEFAULT NULL,
   PRIMARY KEY (`Consecutivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +71,7 @@ CREATE TABLE `terror` (
 
 LOCK TABLES `terror` WRITE;
 /*!40000 ALTER TABLE `terror` DISABLE KEYS */;
-INSERT INTO `terror` VALUES (1,'Duplicate entry \'dmu','RegistroModel',0,'2026-10-14 19:33:42'),(2,'Duplicate entry \'dmunoz00867@ufide.ac.cr\' for key \'UK_tusuario_CorreoElectronico\'','RegistroModel',0,'2026-10-14 19:35:14'),(3,'You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near \')\' at line 1','ActualizarContrasennaModel',0,'2026-11-04 19:36:59'),(4,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:46'),(5,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:56'),(6,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:58'),(7,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:34:55'),(8,'PROCEDURE mn_bd.spConsultarHabitacion does not exist','ConsultarHabitacionModel',0,'2026-11-18 20:39:55');
+INSERT INTO `terror` VALUES (1,'Duplicate entry \'dmu','RegistroModel',0,'2026-10-14 19:33:42'),(2,'Duplicate entry \'dmunoz00867@ufide.ac.cr\' for key \'UK_tusuario_CorreoElectronico\'','RegistroModel',0,'2026-10-14 19:35:14'),(3,'You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near \')\' at line 1','ActualizarContrasennaModel',0,'2026-11-04 19:36:59'),(4,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:46'),(5,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:56'),(6,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:32:58'),(7,'Column \'Consecutivo\' in where clause is ambiguous','ConsultarUsuarioModel',0,'2026-11-11 18:34:55'),(8,'PROCEDURE mn_bd.spConsultarHabitacion does not exist','ConsultarHabitacionModel',0,'2026-11-18 20:39:55'),(9,'Incorrect number of arguments for PROCEDURE mn_bd.spConsultarHabitacionesAdmin; expected 1, got 0','ConsultarHabitacionesAdminModel',0,'2026-11-25 18:32:29'),(10,'Incorrect number of arguments for PROCEDURE mn_bd.spConsultarHabitacionesAdmin; expected 1, got 0','ConsultarHabitacionesAdminModel',0,'2026-11-25 18:32:32');
 /*!40000 ALTER TABLE `terror` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,6 +89,8 @@ CREATE TABLE `thabitaciones` (
   `Caracteristicas` varchar(500) NOT NULL,
   `Disponible` bit(1) NOT NULL,
   `Imagen` varchar(500) NOT NULL,
+  `Nombre` varchar(250) NOT NULL,
+  `Inventario` int(11) NOT NULL,
   PRIMARY KEY (`Consecutivo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -68,7 +101,7 @@ CREATE TABLE `thabitaciones` (
 
 LOCK TABLES `thabitaciones` WRITE;
 /*!40000 ALTER TABLE `thabitaciones` DISABLE KEYS */;
-INSERT INTO `thabitaciones` VALUES (1,10,550.00,'Espacio y camas, está cerca de la playa',_binary '','https://stworld.jp/feature/PH/A63/hotel/01147/images/room_05a.jpg'),(2,5,200.00,'Espacio y camas\r\n\r\nEntre 40 y 60 m² si es habitación familiar, o más si es una suite o apartamento\r\nCombinaciones comunes: 1 cama king + 2 camas individuales, 2 camas queen + 1 sofá cama, o 1 cama matrimonial + literas\r\nSi hay sofá cama, conviene confirmar que sea cómodo para un adulto\r\n\r\nBaño\r\n\r\nBaño privado completo con ducha (a veces con tina)\r\nAmenidades básicas: toallas para 5 personas, jabón, champú, secador de pelo\r\n\r\nComodidades en la habitación\r\n\r\nAire acondicionado o climatización\r\nWi-',_binary '','https://imagenes.computerhoy.20minutos.es/files/image_640_360/uploads/imagenes/2026/11/10/6af3128218ca55-49529143.jpeg'),(3,8,350.00,'Una habitación para ocho personas, como las que se encuentran en hostales, albergues o campamentos, está pensada para aprovechar al máximo el espacio sin sacrificar la comodidad ni la seguridad de quienes la comparten. Lo habitual es que cuente con cuatro o cinco literas, o bien dos literas dobles combinadas con camas individuales, distribuidas de manera que existan pasillos libres de al menos sesenta a ochenta centímetros para circular con tranquilidad. En cuanto al tamaño, se recomienda dispon',_binary '','https://cdn.forbes.com.mx/2021/12/hoteles-de-lujo-seis-1024x682.jpg');
+INSERT INTO `thabitaciones` VALUES (1,10,550.00,'Espacio y camas, está cerca de la playa',_binary '','https://stworld.jp/feature/PH/A63/hotel/01147/images/room_05a.jpg','Habitación Familiar',10),(2,5,200.00,'Espacio y camas\r\n\r\nEntre 40 y 60 m² si es habitación familiar, o más si es una suite o apartamento\r\nCombinaciones comunes: 1 cama king + 2 camas individuales, 2 camas queen + 1 sofá cama, o 1 cama matrimonial + literas\r\nSi hay sofá cama, conviene confirmar que sea cómodo para un adulto\r\n\r\nBaño\r\n\r\nBaño privado completo con ducha (a veces con tina)\r\nAmenidades básicas: toallas para 5 personas, jabón, champú, secador de pelo\r\n\r\nComodidades en la habitación\r\n\r\nAire acondicionado o climatización\r\nWi-',_binary '','https://imagenes.computerhoy.20minutos.es/files/image_640_360/uploads/imagenes/2026/11/10/6af3128218ca55-49529143.jpeg','Habitación Estándar',20),(3,8,350.00,'Una habitación para ocho personas, como las que se encuentran en hostales, albergues o campamentos, está pensada para aprovechar al máximo el espacio sin sacrificar la comodidad ni la seguridad de quienes la comparten. Lo habitual es que cuente con cuatro o cinco literas, o bien dos literas dobles combinadas con camas individuales, distribuidas de manera que existan pasillos libres de al menos sesenta a ochenta centímetros para circular con tranquilidad. En cuanto al tamaño, se recomienda dispon',_binary '\0','https://cdn.forbes.com.mx/2021/12/hoteles-de-lujo-seis-1024x682.jpg','Habitación Premium',5);
 /*!40000 ALTER TABLE `thabitaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +246,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spActualizarHabitacion`(
 	pCapacidad 			int,
 	pPrecio				decimal(10,2),
 	pCaracteristicas	varchar(500),
-	pImagen				varchar(500)
+	pImagen				varchar(500),
+    pNombre				varchar(250),
+    pInventario			int
 )
 BEGIN
 
@@ -221,7 +256,9 @@ BEGIN
     SET 	Capacidad = pCapacidad,
 			Precio = pPrecio,
             Caracteristicas = pCaracteristicas,
-            Imagen = pImagen
+            Imagen = pImagen,
+            Nombre = pNombre,
+            Inventario = pInventario
     WHERE	Consecutivo	= pConsecutivo;
         
 	SELECT ROW_COUNT() > 0 AS 'Actualizado';
@@ -236,26 +273,39 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = cp850 */ ;
+/*!50003 SET character_set_results = cp850 */ ;
+/*!50003 SET collation_connection  = cp850_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spConsultarHabitacion`(pConsecutivo int)
+SELECT Consecutivo, Capacidad, Precio, Caracteristicas, Disponible, Imagen, Nombre, Inventario FROM thabitaciones WHERE Consecutivo = pConsecutivo ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spConsultarHabitacionCarrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spConsultarHabitacion`(
-	pConsecutivo int
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spConsultarHabitacionCarrito`(
+	pConsecutivoUsuario		int
 )
 BEGIN
 
-	SELECT 	Consecutivo,
-			Capacidad,
-			Precio,
-			Caracteristicas,
-			Disponible,
-			Imagen
-	FROM 	thabitaciones
-    WHERE	Consecutivo = pConsecutivo;
-    
+	SELECT 	C.Consecutivo, C.ConsecutivoHabitacion, H.Nombre, H.Capacidad, C.Cantidad, (C.Cantidad * H.Precio) AS Total, H.Imagen
+    FROM	tCarrito C
+    INNER JOIN tHabitaciones H ON C.ConsecutivoHabitacion = H.Consecutivo 
+    WHERE 	C.ConsecutivoUsuario = pConsecutivoUsuario;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -273,17 +323,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spConsultarHabitacionesAdmin`(
-
+	pEstado INT
 )
 BEGIN
+
+	IF(pEstado = -1) THEN
+		SET pEstado = NULL;
+	END IF;		
 
 	SELECT 	Consecutivo,
 			Capacidad,
 			Precio,
 			Caracteristicas,
 			Disponible,
-			Imagen
-	FROM 	thabitaciones;
+			Imagen,
+            Nombre,
+            Inventario
+	FROM 	thabitaciones
+    WHERE	Disponible = IFNULL(pEstado,Disponible);
     
 END ;;
 DELIMITER ;
@@ -317,6 +374,33 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spConsultarResumenCarrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spConsultarResumenCarrito`(
+	pConsecutivoUsuario		int
+)
+BEGIN
+
+	SELECT 	IFNULL(SUM(C.Cantidad), 0)				AS CantidadTotal, 
+			IFNULL(SUM(C.Cantidad * H.Precio), 0)   AS PrecioTotal
+    FROM	tCarrito C
+    INNER JOIN tHabitaciones H ON C.ConsecutivoHabitacion = H.Consecutivo 
+    WHERE 	C.ConsecutivoUsuario = pConsecutivoUsuario;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spConsultarUsuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -337,6 +421,56 @@ BEGIN
     INNER JOIN trol R ON U.ConsecutivoRol = R.Consecutivo
 	WHERE 	U.Consecutivo = pConsecutivo;
     
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spEliminarHabitacionCarrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spEliminarHabitacionCarrito`(
+	pConsecutivoUsuario		int,
+	pConsecutivoHabitacion 	int
+)
+BEGIN
+
+	DELETE 	FROM tcarrito 
+    WHERE 	ConsecutivoUsuario = pConsecutivoUsuario
+		AND ConsecutivoHabitacion = pConsecutivoHabitacion;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spEliminarHabitacionCarritoCompleto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spEliminarHabitacionCarritoCompleto`(
+	pConsecutivoUsuario		int
+)
+BEGIN
+
+	DELETE 	FROM tcarrito 
+    WHERE 	ConsecutivoUsuario = pConsecutivoUsuario;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -439,12 +573,40 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spRegistrarHabitacion`(
 	pCapacidad 			int,
 	pPrecio				decimal(10,2),
 	pCaracteristicas	varchar(500),
-	pImagen				varchar(500)
+	pImagen				varchar(500),
+    pNombre				varchar(250),
+    pInventario			int
 )
 BEGIN
 
-	INSERT INTO thabitaciones(Capacidad,Precio,Caracteristicas,Disponible,Imagen)
-	VALUES (pCapacidad,pPrecio,pCaracteristicas,true,pImagen);
+	INSERT INTO thabitaciones(Capacidad,Precio,Caracteristicas,Disponible,Imagen,Nombre,Inventario)
+	VALUES (pCapacidad,pPrecio,pCaracteristicas,true,pImagen,pNombre,pInventario);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spRegistrarHabitacionCarrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spRegistrarHabitacionCarrito`(
+	pConsecutivoUsuario		int,
+	pConsecutivoHabitacion 	int,
+    pCantidad				int
+)
+BEGIN
+
+	INSERT INTO tcarrito (ConsecutivoUsuario,ConsecutivoHabitacion,FechaCarrito,Cantidad)
+	VALUES (pConsecutivoUsuario,pConsecutivoHabitacion,NOW(),pCantidad);
 
 END ;;
 DELIMITER ;
@@ -489,4 +651,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-18 20:58:02
+-- Dump completed on 2026-11-25 20:56:13
