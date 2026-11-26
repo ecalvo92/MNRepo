@@ -1,12 +1,12 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Model/ConfigModel.php';
 
-function ConsultarHabitacionesAdminModel()
+function ConsultarHabitacionesAdminModel($pAdmin)
 {
     try{
         $context = Conectar();
 
-        $sql = "CALL spConsultarHabitacionesAdmin()";
+        $sql = "CALL spConsultarHabitacionesAdmin('$pAdmin')";
         $response = $context -> query($sql);
 
         $data = [];
@@ -66,12 +66,12 @@ function InactivarHabitacionModel($habitacionId)
     }
 }
 
-function AgregarHabitacionModel($capacidad, $precio, $caracteristicas, $imagen)
+function AgregarHabitacionModel($capacidad, $precio, $caracteristicas, $imagen, $nombre, $inventario)
 {
     try{
         $context = Conectar();
 
-        $sql = "CALL spRegistrarHabitacion('$capacidad', '$precio', '$caracteristicas', '$imagen')";
+        $sql = "CALL spRegistrarHabitacion('$capacidad', '$precio', '$caracteristicas', '$imagen', '$nombre', '$inventario')";
         $response = $context -> query($sql);
 
         Cerrar($context);
@@ -83,12 +83,12 @@ function AgregarHabitacionModel($capacidad, $precio, $caracteristicas, $imagen)
     }
 }
 
-function ActualizarHabitacionModel($habitacionId, $capacidad, $precio, $caracteristicas, $imagen)
+function ActualizarHabitacionModel($habitacionId, $capacidad, $precio, $caracteristicas, $imagen, $nombre, $inventario)
     {
         try{
             $context = Conectar();
 
-            $sql = "CALL spActualizarHabitacion('$habitacionId', '$capacidad', '$precio', '$caracteristicas', '$imagen')";
+            $sql = "CALL spActualizarHabitacion('$habitacionId', '$capacidad', '$precio', '$caracteristicas', '$imagen', '$nombre', '$inventario')";
             $response = $context -> query($sql);
 
             $actualizado = (bool) $response -> fetch_row()[0];

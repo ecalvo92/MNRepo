@@ -1,11 +1,11 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/MNRepo/Model/HabitacionesModel.php';
 
-function ConsultarHabitacionesAdmin()
+function ConsultarHabitacionesAdmin($pAdmin)
 {
-    return ConsultarHabitacionesAdminModel();
+    return ConsultarHabitacionesAdminModel($pAdmin);
 }
-
+    
 function ConsultarHabitacion($idHabitacion)
 {
     return ConsultarHabitacionModel($idHabitacion);
@@ -24,8 +24,10 @@ if(isset($_POST["btnAgregarHabitacion"]))
     $precio = $_POST["txtPrecio"];
     $caracteristicas = $_POST["txtCaracteristicas"];
     $imagen = $_POST["txtImagen"];
+    $nombre = $_POST["txtNombre"];
+    $inventario = $_POST["txtInventario"];
 
-    $response = AgregarHabitacionModel($capacidad, $precio, $caracteristicas, $imagen);
+    $response = AgregarHabitacionModel($capacidad, $precio, $caracteristicas, $imagen, $nombre, $inventario);
     
     if($response) {
         header("Location: ../../View/Habitaciones/habitaciones.php");
@@ -42,8 +44,10 @@ if(isset($_POST["btnActualizarHabitacion"]))
     $precio = $_POST["txtPrecio"];
     $caracteristicas = $_POST["txtCaracteristicas"];
     $imagen = $_POST["txtImagen"];
+    $nombre = $_POST["txtNombre"];
+    $inventario = $_POST["txtInventario"];
 
-    $response = ActualizarHabitacionModel($habitacionId, $capacidad, $precio, $caracteristicas, $imagen);
+    $response = ActualizarHabitacionModel($habitacionId, $capacidad, $precio, $caracteristicas, $imagen, $nombre, $inventario);
     
     if($response) {
         header("Location: ../../View/Habitaciones/habitaciones.php");

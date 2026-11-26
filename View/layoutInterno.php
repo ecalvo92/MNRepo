@@ -124,7 +124,7 @@ function MostrarSidebar()
                         <li class="sidebar-menu-item">
                             <a href="" class="sidebar-menu-link active" id="menu-overview" title="Overview">
                             <i class="bi bi-grid-fill"></i>
-                            <span>Dashboard</span>
+                            <span>Habitaciones</span>
                             </a>
                         </li>
                     </ul>

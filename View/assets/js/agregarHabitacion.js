@@ -7,7 +7,11 @@ $(function () {
         return this.optional(element) || (/^\d+(\.\d{1,2})?$/.test(value) && parseFloat(value) > 0);
     });
 
-    $('#txtCapacidad').on('input', function () {
+    $.validator.addMethod('enteroNoNegativo', function (value, element) {
+        return this.optional(element) || /^\d+$/.test(value);
+    });
+
+    $('#txtCapacidad, #txtInventario').on('input', function () {
         this.value = this.value.replace(/\D/g, '');
     });
 
@@ -22,12 +26,15 @@ $(function () {
 
     $('#AgregarHabitacionForm').validate({
         rules: {
+            txtNombre: { required: true },
             txtCapacidad: { required: true, enteroPositivo: true },
             txtPrecio: { required: true, decimalPositivo: true },
+            txtInventario: { required: true, enteroNoNegativo: true },
             txtCaracteristicas: { required: true },
             txtImagen: { required: true }
         },
         messages: {
+            txtNombre: { required: 'El nombre es obligatorio' },
             txtCapacidad: {
                 required: 'La capacidad es obligatoria',
                 enteroPositivo: 'Ingrese un número entero mayor a 0'
@@ -35,6 +42,10 @@ $(function () {
             txtPrecio: {
                 required: 'El precio es obligatorio',
                 decimalPositivo: 'Ingrese un precio mayor a 0 (máximo 2 decimales)'
+            },
+            txtInventario: {
+                required: 'El inventario es obligatorio',
+                enteroNoNegativo: 'Ingrese un número entero mayor o igual a 0'
             },
             txtCaracteristicas: { required: 'Las características son obligatorias' },
             txtImagen: {

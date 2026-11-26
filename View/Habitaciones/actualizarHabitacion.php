@@ -46,11 +46,20 @@
 
                         <?php } ?>
 
+                        <input type="hidden" id="txtHabitacionId" name="txtHabitacionId" value="<?php echo $datos['Consecutivo']; ?>">
+
+                        <div class="login-form-group">
+                            <label for="txtNombre" class="login-form-label">Nombre</label>
+                            <div class="login-input-group">
+                                <i class="bi bi-door-open input-icon"></i>
+                                <input type="text" id="txtNombre" name="txtNombre" maxlength="250" class="login-input"
+                                    value="<?php echo htmlspecialchars($datos['Nombre']); ?>">
+                            </div>
+                        </div>
+
                         <div class="row">
 
-                            <input type="hidden" id="txtHabitacionId" name="txtHabitacionId" value="<?php echo $datos['Consecutivo']; ?>">
-
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-4">
                                 <div class="login-form-group">
                                     <label for="txtCapacidad" class="login-form-label">Capacidad (personas)</label>
                                     <div class="login-input-group">
@@ -61,13 +70,24 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-4">
                                 <div class="login-form-group">
                                     <label for="txtPrecio" class="login-form-label">Precio</label>
                                     <div class="login-input-group">
                                         <i class="bi bi-currency-dollar input-icon"></i>
                                         <input type="text" id="txtPrecio" name="txtPrecio" inputmode="decimal"
                                             class="login-input" value="<?php echo $datos['Precio']; ?>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4">
+                                <div class="login-form-group">
+                                    <label for="txtInventario" class="login-form-label">Inventario</label>
+                                    <div class="login-input-group">
+                                        <i class="bi bi-boxes input-icon"></i>
+                                        <input type="text" id="txtInventario" name="txtInventario" inputmode="numeric"
+                                            class="login-input" value="<?php echo $datos['Inventario']; ?>">
                                     </div>
                                 </div>
                             </div>

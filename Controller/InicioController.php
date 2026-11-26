@@ -36,8 +36,15 @@ if(isset($_POST['btnInicioSesion'])) {
         $_SESSION['ConsecutivoUsuario'] = $response['Consecutivo'];
         $_SESSION['CorreoElectronico'] = $response['CorreoElectronico'];
 
-        header("Location: ../../View/Inicio/home.php");
-        exit();
+        if($_SESSION['ConsecutivoRol'] == "2") {
+            header("Location: ../../View/Admin/monitor.php");
+            exit();
+        }
+        else
+        {
+            header("Location: ../../View/Inicio/home.php");
+            exit();  
+        }   
     }
 
     $_POST["mensaje"] = "Su información no se ha podido validar correctamente";
