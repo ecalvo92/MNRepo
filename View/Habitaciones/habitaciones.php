@@ -3,7 +3,7 @@
 
       ValidarVistaAdmin();
 
-      $datos = ConsultarHabitacionesAdmin();
+      $datos = ConsultarHabitacionesAdmin(-1);
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +48,10 @@
                                 <tr>
                                     <th>#</th>
                                     <th style="width: 10%;">Imagen</th>
+                                    <th>Nombre</th>
                                     <th>Características</th>
                                     <th class="text-center">Capacidad</th>
+                                    <th class="text-center">Inventario</th>
                                     <th class="text-end">Precio</th>
                                     <th class="text-center">Estado</th>
                                     <th class="text-center">Acciones</th>
@@ -64,11 +66,17 @@
                                                  alt="Habitación <?php echo $habitacion['Consecutivo']; ?>" 
                                                  style="max-width: 180px; height: 120px; object-fit: cover; border-radius: 4px;">
                                         </td>
+                                        <td>
+                                            <strong><?php echo htmlspecialchars($habitacion['Nombre']); ?></strong>
+                                        </td>
                                         <td class="text-justify">
                                             <small><?php echo $habitacion['Caracteristicas']; ?></small>
                                         </td>
                                         <td class="text-center">
                                             <strong><?php echo $habitacion['Capacidad']; ?> personas</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong><?php echo $habitacion['Inventario']; ?></strong>
                                         </td>
                                         <td class="text-end">
                                             <strong>$<?php echo number_format($habitacion['Precio'], 2); ?></strong>
